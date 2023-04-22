@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import { setUsername } from '../store/reducers/canvasSlice'
 import { useAppDispatch } from '../store/hooks'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, FormControl } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 
 const ModalComponent = () => {
-    const [value, setValue] = useState('')
+    const [name, setName] = useState('')
+    const [code, setCode] = useState('')
     const [show, setShow] = useState(true)
     const dispatch = useAppDispatch()
+    const nav = useNavigate()
 
     const connectionHandler = () => {
-        dispatch(setUsername(value))
+        dispatch(setUsername(name))
+        if(code) {
+          nav('/'+code)
+        }
         setShow(false)
       }
 
@@ -20,11 +26,13 @@ const ModalComponent = () => {
           <Modal.Title>Введите имя</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+          <FormControl type="text" value={name} onChange={e => setName(e.target.value)} placeholder='Name'/>
+          <FormControl style={{marginTop: 10}} type='text' value={code} onChange={e => setCode(e.target.value)} placeholder='Room Code'/>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => connectionHandler()}>
-            Войти
+            Enter
           </Button>
         </Modal.Footer>
     </Modal>

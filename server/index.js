@@ -4,14 +4,12 @@ const WSServer = require('express-ws')(app)
 const aWss = WSServer.getWss()
 const PORT = process.env.PORT || 5000
 const cors = require('cors')
-const fs = require('fs')
-const path = require('path')
+const imageController = require('./controllers/image.controller')
 
 app.use(cors())
 app.use(express.json())
 
 app.ws('/', (ws, req) => {
-    
     ws.send('Успешно подключился')
     ws.on('message', (msg) => {
         msg = JSON.parse(msg)
@@ -20,52 +18,44 @@ app.ws('/', (ws, req) => {
                 connnectionHandler(ws, msg)
                 break;
             case 'draw': 
-                broadcastConnection(ws, msg)
+                broadcast(ws, msg)
                 break;
             case 'users':
-                broadcastUsersConnection(ws, msg)
+                broadcastUsers(ws, msg)
                 break;
             case 'undoRedo':
-                broadcastConnection(ws, msg)
+                broadcast(ws, msg)
+                break;
+            case 'close':  
+                broadcast(ws, msg)
+                break;
+            case 'start': 
+                broadcast(ws,msg)
+                break;
+            case 'finish': 
+                broadcast(ws, msg)
                 break;
         }
     })
+
+    ws.on('close', () => {
+        const msg = {
+            id: ws.id,
+            username: ws.username,
+            method: 'close'
+        }
+        broadcast(ws, msg)
+    })
 })
 
-app.post ('/image', (req, res) => {
-    try {
-        let {image} = req.body
-        image = image.replace('data:image/png;base64,', '')
-        fs.writeFileSync(path.resolve(__dirname, 'images', `${req.query.id}.jpg`), image, 'base64')
-        res.status(200).json('ok')
-    } catch (e) {
-        console.log(e)
-        res.status(500).json('error')
-    }
-})
-
-app.get('/image', (req, res) => {
-    try {
-        const file = fs.readFileSync(path.resolve(__dirname, 'images', `${req.query.id}.jpg`))
-        const data = 'data:image/png;base64,' + file.toString('base64')
-        res.json(data)
-    } catch (e) {
-        console.log(e)
-        res.status(500).json('error')
-    }
-})
+app.post ('/image', imageController.load)
+app.get('/image', imageController.upload)
 
 
 
 app.listen(PORT, () => console.log('server started on ' + PORT))
 
-const connnectionHandler = (ws, msg) => {
-    ws.id = msg.id
-    ws.username = msg.username
-    broadcastConnection(ws,msg)
-}
-
-const broadcastConnection = (ws, msg) => {
+const broadcast = (ws, msg) => {
     aWss.clients.forEach(client => {
         if(client.id == msg.id) {
             client.send(JSON.stringify(msg))
@@ -73,7 +63,7 @@ const broadcastConnection = (ws, msg) => {
     })
 }
 
-const broadcastUsersConnection = (ws, msg) => {
+const broadcastUsers = (ws, msg) => {
     let users = []
     aWss.clients.forEach(client => {
         if(client.id == msg.id) {
@@ -94,3 +84,11 @@ const broadcastUsersConnection = (ws, msg) => {
         }
     })
 }
+
+
+const connnectionHandler = (ws, msg) => {
+    ws.id = msg.id
+    ws.username = msg.username
+    broadcast(ws,msg)
+}
+

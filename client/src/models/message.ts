@@ -4,7 +4,7 @@ import { IUser } from "./IUser"
 export interface IMessage {
     id: string | undefined
     username?: string | null
-    method: 'connection' | 'draw' | 'users' | 'undoRedo'
+    method: 'connection' | 'draw' | 'users' | 'undoRedo' | 'close'
     type?: 'undo' | 'redo',
     users?: IUser[]
 }
