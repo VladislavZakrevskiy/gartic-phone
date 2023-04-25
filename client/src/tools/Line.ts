@@ -30,32 +30,6 @@ export default class Line extends Tool {
 
     mouseUpHandler(e: React.FormEvent<HTMLCanvasElement>) {
         this.mouseDown = false
-        const msg: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                x: this.startX, 
-                y: this.startY,
-                currentX: this.currentX,
-                currentY: this.currentY,
-                fillColor: this.ctx?.fillStyle,
-                strokeColor: this.ctx?.strokeStyle,
-                lineWidth: this.ctx?.lineWidth,
-                type: 'line'
-            }
-        }
-        this.socket?.send(JSON.stringify(msg))
-
-        const finish: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                type: 'finish',
-                x: this.currentX,
-                y: this.currentY
-            }
-        }
-        this.socket?.send(JSON.stringify(finish))
     }
 
     mouseDownHandler(e: MouseEvent) {
@@ -95,16 +69,5 @@ export default class Line extends Tool {
             this.ctx?.fill()
             this.ctx?.stroke()
         }
-    }
-
-    static staticDraw(ctx: CanvasRenderingContext2D, x: number, y: number, currentX: number, currentY: number, fillColor: string, strokeColor: string, lineWidth: number) {
-        ctx?.beginPath()
-        ctx?.moveTo(x, y)
-        ctx?.lineTo(currentX, currentY)
-        ctx.fillStyle = fillColor
-        ctx.strokeStyle = strokeColor
-        ctx.lineWidth = lineWidth
-        ctx?.fill()
-        ctx?.stroke()
     }
 }

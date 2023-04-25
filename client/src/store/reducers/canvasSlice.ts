@@ -20,7 +20,7 @@ const initialState: State = {
     id: '',
     socket: null,
     redoList: [],
-    undoList: []
+    undoList: [],
 };
 
 
@@ -57,6 +57,7 @@ const canvasSlice = createSlice({
     setRedoList: (state, action) => {
       state.redoList = action.payload
     },
+
   },
 
 });

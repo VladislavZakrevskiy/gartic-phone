@@ -10,7 +10,6 @@ interface IUserProps {
 const User = ({user, i}:IUserProps) => {
   return (
     <div className='user'>
-        <p>{i}.</p>
         <p>{user.username}</p>
     </div>
   )

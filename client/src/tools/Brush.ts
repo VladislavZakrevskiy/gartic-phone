@@ -26,18 +26,6 @@ export default class Brush extends Tool {
 
     mouseUpHandler(e: MouseEvent) {
         this.mouseDown = false
-        const msg: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                type: 'finish',
-                x: e.pageX- e.target!.offsetLeft,
-                y: e.pageY - e.target!.offsetTop
-            }
-        }
-        this.socket?.send(JSON.stringify(msg))
-
-
     }
 
     mouseDownHandler(e: MouseEvent) {
@@ -50,34 +38,13 @@ export default class Brush extends Tool {
     mouseMoveHandler(e: MouseEvent) {
         if(this.mouseDown){
             // @ts-ignore
-            // this.draw(e.pageX- e.target.offsetLeft, e.pageY - e.target.offsetTop)
-            const msg: drawMessage = {
-                id: this.id,
-                method: 'draw',
-                figure: {
-                    type: 'brush',
-                    x: e.pageX- e.target!.offsetLeft,
-                    y: e.pageY - e.target!.offsetTop,
-                    fillColor: this.ctx?.fillStyle,
-                    strokeColor: this.ctx?.strokeStyle,
-                    lineWidth: this.ctx?.lineWidth
-                }
-            }
-            this.socket?.send(JSON.stringify(msg))
-
+            this.draw(e.pageX- e.target.offsetLeft, e.pageY - e.target.offsetTop)
         }
     }
 
-    static staticDraw(ctx: CanvasRenderingContext2D, x:number, y:number, fillColor: string, strokeColor: string, lineWidth: number) {
-        ctx.fillStyle = fillColor
-        ctx.strokeStyle = strokeColor
-        ctx.lineWidth = lineWidth
-        ctx?.lineTo(x, y)
-        ctx?.stroke()
-    }
-
-    draw( x:number, y:number) {
+    draw(x: number, y: number) {
         this.ctx?.lineTo(x, y)
         this.ctx?.stroke()
     }
+
 }

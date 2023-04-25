@@ -30,32 +30,6 @@ export default class Rect extends Tool {
 
     mouseUpHandler(e: MouseEvent) {
         this.mouseDown = false
-        const msg: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                type: 'rect',
-                x: this.startX,
-                y: this.startY,
-                width: this.width,
-                height: this.height,
-                fillColor: this.ctx?.fillStyle,
-                strokeColor: this.ctx?.strokeStyle,
-                lineWidth: this.ctx?.lineWidth
-            }
-        }
-        this.socket?.send(JSON.stringify(msg))
-
-        const finish: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                type: 'finish',
-                x: this.startX,
-                y: this.startY
-            }
-        }
-        this.socket?.send(JSON.stringify(finish))
     }
 
     mouseDownHandler(e: MouseEvent) {
@@ -97,13 +71,4 @@ export default class Rect extends Tool {
         }
     }
 
-    static staticDraw(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, fillColor: string, strokeColor: string, lineWidth: number) {
-            ctx.fillStyle = fillColor
-            ctx.strokeStyle = strokeColor
-            ctx.lineWidth = lineWidth
-            ctx?.beginPath()
-            ctx?.rect(x,y,w,h)
-            ctx?.fill()
-            ctx?.stroke()
-     }
 }

@@ -4,12 +4,13 @@ import '../styles/modes.scss'
 
 interface ITimerProps {
     allTime: number
-    callback: () => void
+    callback?: () => void
+    classTimer?: string
 }
 
-const Timer = ({ allTime, callback}: ITimerProps) => {
+const Timer = ({ allTime, callback, classTimer}: ITimerProps) => {
     const [timer, setTimer] = useState(allTime / 1000)
-
+  
     useEffect(() => {
         if( timer > 0 ) { 
             let interval: number
@@ -20,12 +21,12 @@ const Timer = ({ allTime, callback}: ITimerProps) => {
             return () => clearInterval(interval);
         }
         else {
-            callback()
+            callback ? callback() : null
         }
       }, [timer]);
 
     return (
-        <div className='timer'>
+        <div className={classTimer ? classTimer : 'timer'}>
             {timer}
         </div>
     )

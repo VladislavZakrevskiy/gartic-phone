@@ -25,16 +25,6 @@ export default class Eraser extends Tool {
 
     mouseUpHandler(e: React.FormEvent<HTMLCanvasElement>) {
         this.mouseDown = false
-        const msg: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                type: 'finish',
-                x: e.pageX- e.target.offsetLeft,
-                y: e.pageY - e.target.offsetTop
-            }
-        }
-        this.socket?.send(JSON.stringify(msg))
     }
 
     mouseDownHandler(e: MouseEvent) {
@@ -46,19 +36,8 @@ export default class Eraser extends Tool {
 
     mouseMoveHandler(e: MouseEvent) {
         if(this.mouseDown){
-            // @ts-ignore
-            this.draw(e.pageX- e.target.offsetLeft, e.pageY - e.target.offsetTop)
-            const msg: drawMessage = {
-                id: this.id,
-                method: 'draw',
-                figure: {
-                    type: 'eraser',
-                    x: e.pageX- e.target.offsetLeft,
-                    y: e.pageY - e.target.offsetTop,
-                    lineWidth: this.ctx?.lineWidth
-                }
-            }
-            this.socket?.send(JSON.stringify(msg))
+        // @ts-ignore
+        this.draw(e.pageX- e.target.offsetLeft, e.pageY - e.target.offsetTop)
         }
     }
 
@@ -67,15 +46,5 @@ export default class Eraser extends Tool {
         this.ctx!.strokeStyle = 'white'
         this.ctx?.stroke()
         this.ctx!.strokeStyle = 'black'
-    }
-
-    static staticDraw(ctx: CanvasRenderingContext2D,x:number, y:number, lineWidth: number) {
-        ctx.fillStyle = 'white'
-        ctx!.strokeStyle = 'white'
-        ctx.lineWidth = lineWidth
-        ctx.lineTo(x,y)
-        ctx?.stroke()
-        ctx.fillStyle = 'black'
-        ctx!.strokeStyle = 'black'
     }
 }

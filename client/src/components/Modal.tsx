@@ -23,7 +23,7 @@ const ModalComponent = () => {
   return (
     <Modal show={show} >
         <Modal.Header>
-          <Modal.Title>Введите имя</Modal.Title>
+          <Modal.Title>Enter your name!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormControl type="text" value={name} onChange={e => setName(e.target.value)} placeholder='Name'/>

@@ -64,16 +64,6 @@ export default class undoRedo {
 
     }
 
-    static sendUndoMsg (id: string, socket: WebSocket) {
-      const msg: IMessage = {
-        id: id,
-        method: 'undoRedo',
-        type: 'undo'
-      }
-      socket?.send(JSON.stringify(msg))
-    }
-
-
     redo() {
         if(this.redoList.length > 0) {
             const dataURL = this.redoList.pop()
@@ -90,15 +80,5 @@ export default class undoRedo {
             //@ts-ignore
             this.ctx?.clearRect(0,0,this.canvas.width, this.canvas.height)
           }
-    }
-
-    static sendRedoMsg (id: string, socket: WebSocket) {
-      const msg: IMessage = {
-        id: id,
-        method: 'undoRedo',
-        type: 'redo'
-      }
-      console.log(msg )
-      socket?.send(JSON.stringify(msg))
     }
 }

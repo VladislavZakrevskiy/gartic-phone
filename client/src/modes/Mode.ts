@@ -12,7 +12,9 @@ interface IRound {
 
 export class Mode {
     drawTime: number = 60000
-    writeTime: number = 20000
+    writeTime: number = 20000 
+    currentPlayerNumber: number = 0
+    username: string
     socket: WebSocket
     roundsCount: number = 0
     players: IUser[]
@@ -22,12 +24,19 @@ export class Mode {
     private times: number[] = []
     private playersRound: IUser[][] = []
 
-    constructor(socket: WebSocket, players: IUser[]) {
+    constructor(socket: WebSocket, players: IUser[], username: string) {
         this.socket = socket
         this.players = players
+        this.username = username
         this.roundsCount = players.length
         this.isRoundsOdd()
         this.configureRounds()
+        for (let i = 0; i < this.roundsCount; i++) {
+            if(players[i].username === this.username) {
+                this.currentPlayerNumber = i
+                break;
+            }
+        }
     }
 
     rotate (players: IUser[], k: number) {
@@ -71,7 +80,7 @@ export class Mode {
                     break;
             }
             //players
-            this.playersRound[i] = this.rotate(this.players, i)
+            this.playersRound[i] = this.rotate(this.players, i + 1)
         }
         let configRounds: IRound[] = []
         for(let i = 0; i < this.roundsCount; i++) {
@@ -83,7 +92,6 @@ export class Mode {
             configRounds[i] = round
         }
         this.rounds = configRounds
-        console.log(this)
     }
 
 

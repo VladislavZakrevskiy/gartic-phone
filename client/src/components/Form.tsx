@@ -3,21 +3,15 @@ import { Form } from 'react-bootstrap'
 
 interface IFormComponentProps {
     text?: string | undefined
+    value: string
+    setValue: (value: string) => void
 }
 
-const FormComponent = ({text}: IFormComponentProps) => {
+const FormComponent = ({text, setValue, value}: IFormComponentProps) => {
 
   return (
     <Form>
-        <Form.Label htmlFor='form-input'>
-        {
-            text ? 
-            text : 'Введите предложение для друзей'
-        }
-        </Form.Label>
-        <Form.Control
-            id='form-input'
-        />
+        
     </Form>
   )
 }

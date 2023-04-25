@@ -30,31 +30,6 @@ export default class Circle extends Tool {
 
     mouseUpHandler(e: React.FormEvent<HTMLCanvasElement>) {
         this.mouseDown = false
-        const msg: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                x: this.startX,
-                y: this.startY,
-                fillColor: this.ctx?.fillStyle,
-                strokeColor: this.ctx?.strokeStyle,
-                lineWidth: this.ctx?.lineWidth,
-                radius: this.radius,
-                type: 'circle'
-            }
-        }
-        this.socket?.send(JSON.stringify(msg))
-
-        const finish: drawMessage = {
-            id: this.id,
-            method: 'draw',
-            figure: {
-                type: 'finish',
-                x: this.startX,
-                y: this.startY
-            }
-        }
-        this.socket?.send(JSON.stringify(finish))
     }
 
     mouseDownHandler(e: MouseEvent) {
@@ -93,15 +68,5 @@ export default class Circle extends Tool {
             this.ctx?.fill()
             this.ctx?.stroke()
         }
-    }
-
-    static staticDraw (ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, fillColor: string, strokeColor: string, lineWidth: number)  {
-        ctx.fillStyle = fillColor
-        ctx.strokeStyle = strokeColor
-        ctx.lineWidth = lineWidth
-        ctx?.beginPath()
-        ctx.arc(x, y, radius, 0, 2 * Math.PI, false)
-        ctx?.fill()
-        ctx?.stroke()
     }
 }

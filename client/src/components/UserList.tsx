@@ -3,6 +3,7 @@ import { useAppSelector } from '../store/hooks'
 import User from './User'
 import '../styles/User.scss'
 import '../styles/canvas.scss'
+import { FormText } from 'react-bootstrap'
 
 type Props = {}
 
