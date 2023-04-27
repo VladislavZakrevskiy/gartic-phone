@@ -5,16 +5,13 @@ import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { setMode } from '../store/reducers/modesSlice'
 import { Classic } from '../modes/Classic'
 import { Plagiarism } from '../modes/Plagiarism'
-import { Secret } from '../modes/Secret'
 import { Icebreaker } from '../modes/Icebreaker'
 import { Express } from '../modes/Express'
 import { Sandwich } from '../modes/Sandwich'
-import { Crowd } from '../modes/Crowd'
 import { useNavigate } from 'react-router-dom'
 import { Mode as ModeClass } from '../modes/Mode';
 import Timer from './secondTimer';
 import { IMessage } from '../models/message'
-import { FormText } from 'react-bootstrap'
 
 
 const ModeBar = () => {
@@ -32,7 +29,7 @@ const ModeBar = () => {
   }
 
   const timerHandler = () => { 
-    nav('/writeRound?round=0')
+    nav('/writeRound/0')
     const msg: IMessage = {
       id: id,
       username: username, 
@@ -48,36 +45,26 @@ const ModeBar = () => {
 
   return (
         <div className='modes'>
-        {/* 12 модов макс */}
         <Mode 
-          main='Classic' 
-          additionally='' 
+          main='Classic ' 
           click={() => modeHandler(new Classic(socket!, users, username!))}/>
-        {/* Basic mode! Alternately write and draw until you run out of moves! */}
+        {/*  */}
         <Mode 
-          main='Plagiarism' 
-          additionally='' 
+          main='KnockOff ' 
           click={() => modeHandler(new Plagiarism(socket!, users, username!))}/>
+          {/*  */}
         <Mode 
-          main='Secret' 
-          additionally='' 
-          click={() => dispatch(setMode(new Secret(socket!, users, username!)))}/>
+          main='Icebreaker ' 
+          click={() => modeHandler(new Icebreaker(socket!, users, username!))}/>
+          {/*  */}
         <Mode 
-          main='Icebreaker' 
-          additionally='' 
-          click={() => dispatch(setMode(new Icebreaker(socket!, users, username!)))}/>
-        <Mode 
-          main='Express' 
-          additionally='' 
+          main='Speedrun ' 
           click={() => modeHandler(new Express(socket!, users, username!))}/>
+          {/*  */}
         <Mode 
-          main='Sandwich' 
-          additionally='' 
-          click={() => dispatch(setMode(new Sandwich(socket!, users, username!)))}/>
-        <Mode 
-          main='Crowd' 
-          additionally='' 
-          click={() => dispatch(setMode(new  Crowd(socket!, users, username!)))}/>
+          main='Sandwich ' 
+          click={() => modeHandler(new Sandwich(socket!, users, username!))}/>
+          {/*  */}
         <Timer show={show} handler={timerHandler}/>
       </div>
   )

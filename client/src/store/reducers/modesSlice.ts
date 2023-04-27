@@ -52,6 +52,7 @@ const modesSlice = createSlice({
             
             state.finish.push(finish)
             if(state.finish.length === state.mode?.players.length!) {
+                console.log(path)
                 nav(path)
                 state.finish = []
             }

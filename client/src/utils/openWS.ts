@@ -41,7 +41,7 @@ export const openWS = (dispatch: any, username: string, id: string, users: IUser
                     dispatch(deleteUser(msg.username))
                     break;
                 case 'start': 
-                    nav('/writeRound?round=0')
+                    nav('/writeRound/0')
                     //not oop, but how another?
                     console.log(users)
                     switch(msg.mode) {

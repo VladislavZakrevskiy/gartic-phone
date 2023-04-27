@@ -13,8 +13,8 @@ const App = (props: Props) => {
     <BrowserRouter>
       <Routes>
         {/* query: round */}
-        <Route path='/drawRound' element={<CanvasPage/>}/>
-        <Route path='/writeRound' element={<FormPage/>}/>
+        <Route path='/drawRound/:round' element={<CanvasPage/>}/>
+        <Route path='/writeRound/:round' element={<FormPage/>}/>
         <Route path='/:id' element={<HomePage/>}/>
         <Route path='/finish/:id' element={<FinishPage/>}/>
         <Route

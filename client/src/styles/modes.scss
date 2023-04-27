@@ -19,17 +19,11 @@
         color: white;
         background-color: rgba(13, 110, 253, 0.5);
         cursor: pointer;
-
-        &-header {
-        
-        }
-
-        &-content {
-        
-        }
+        overflow: hidden;
 
     }
 }
+
 
 .timer {
     position: absolute;

@@ -1,27 +1,29 @@
-import  { useCallback, useRef, useState } from 'react'
+import  { useCallback, useEffect, useRef, useState } from 'react'
 import ToolBar from '../components/ToolBar'
 import Settings from '../components/Settings'
 import Canvas from '../components/Canvas'
 import UserList from '../components/UserList'
 import Rounds from '../components/Rounds'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import Timer from '../components/Timer'
 import { useAppSelector } from '../store/hooks'
 import { IMessage } from '../models/message'
 import { Button, Modal } from 'react-bootstrap'
-import Sentences from '../components/Sentences'
 import '../styles/canvas.scss'
+import { IElement } from '../modes/Mode'
+import ProcessElementFW from '../components/ProcessElementFW'
 
 type Props = {}
 
 const CanvasPage = (props: Props) => {
-  const [params, setParams] = useSearchParams()
-  const round = params.get('round')
+  const {round} = useParams()
   const {mode} = useAppSelector(state => state.modesSlice)
   const nav = useNavigate()
   const {id, username, socket} = useAppSelector(state => state.canvasSlice)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [show, setShow] = useState(true)
+  const [element, setElement] = useState<IElement | null>(null)
+  const [time, setTime] = useState(mode?.rounds[+round!].time!)
 
  
   const timerHandler = useCallback(async () => {
@@ -30,7 +32,7 @@ const CanvasPage = (props: Props) => {
           id,
           username,
           method: 'finish',
-          path: `/${mode?.rounds[+round! + 1].type}/?round=${+round! + 1}`,
+          path: `/${mode?.rounds[+round! + 1].type}/${+round! + 1}`,
           image: canvasRef.current?.toDataURL(),
           round: +round!
         }
@@ -47,24 +49,31 @@ const CanvasPage = (props: Props) => {
         }
         socket?.send(JSON.stringify(msg))
       }
-  }, [])
+  }, [+round!])
+
+  useEffect(() => {
+    const el = mode?.getClassElement(+round!, 'draw')
+    setElement(el!)
+  }, [+round!])
+
+  useEffect(() => {
+    setShow(true)
+    setTime(mode?.rounds[+round!].time!)
+  } , [round])
 
  
 
   return (
     <div className='app'>
       <Rounds round={+round!} allRounds={mode?.roundsCount!}/>
-      <Timer allTime={mode?.rounds[+round!].time!} callback={timerHandler}/> 
+      <Timer allTime={time} callback={timerHandler} round={+round!}/> 
       <ToolBar/>
       <Canvas canvasRef={canvasRef}/>
       <Settings/>
       <Modal show={show}>
         <Modal.Header>Paint it</Modal.Header>
         <Modal.Body>
-          <Sentences round={+round! - 1} usernames={
-          [
-            mode?.rounds[+round! - 1].players[mode.currentPlayerNumber].username!,
-          ]} id={id!}/> 
+          <ProcessElementFW element={element!}/>
         </Modal.Body>
         <Modal.Header>
           <Button onClick={() => setShow(false)}>Quit</Button>

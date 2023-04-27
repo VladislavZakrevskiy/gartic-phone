@@ -36,7 +36,7 @@ const FinishPage = () => {
       method: 'pagination'
     }
     page + 1 === mode?.roundsCount! ?
-    nav(`/${id!}1234562434`) :
+    nav(`/${id!}1`) :
     socket?.send(JSON.stringify(msg)) 
   }
 
@@ -45,7 +45,7 @@ const FinishPage = () => {
       <FormText id='up'>{page + 1} Round</FormText>
       {
         data[page].map((username, j) => {
-          if(j % 2 === 0) {
+          if(mode?.rounds[j].type == 'writeRound') {
             return (
             <AppeareElement className='finish-page-sentence' time={j * 2}>
               <FormText as='h3' style={{display: 'flex', flexDirection: 'column'}}>{username}: </FormText>

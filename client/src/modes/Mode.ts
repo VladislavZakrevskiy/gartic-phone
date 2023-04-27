@@ -2,12 +2,19 @@ import { IUser } from "../models/IUser"
 
 type roundsTypes = 'drawRound' | 'writeRound' | ''
 
-interface IRound {
+export interface IRound {
     type: roundsTypes
     players: IUser[]
     sentences?: string[]
     prints?: string[]
     time: number
+}
+
+export interface IElement {
+    element: 'Photo' | 'Sentences'
+    id: string
+    round: number
+    username: string 
 }
 
 export class Mode {
@@ -18,11 +25,11 @@ export class Mode {
     socket: WebSocket
     roundsCount: number = 0
     players: IUser[]
-    private playersOdd: boolean = false
+    playersOdd: boolean = false
     rounds: IRound[] = []
-    private sequence: roundsTypes[] = []
-    private times: number[] = []
-    private playersRound: IUser[][] = []
+    sequence: roundsTypes[] = []
+    times: number[] = []
+    playersRound: IUser[][] = []
 
     constructor(socket: WebSocket, players: IUser[], username: string) {
         this.socket = socket
@@ -94,5 +101,6 @@ export class Mode {
         this.rounds = configRounds
     }
 
+    getClassElement(i:number, page: "draw" | 'write') {}
 
 }
