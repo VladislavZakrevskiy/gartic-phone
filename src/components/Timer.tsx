@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useEffect, useMemo, useState } from 'react'
 import { useAppSelector } from '../store/hooks'
 import '../styles/modes.scss'
@@ -19,7 +18,7 @@ const Timer = ({ allTime, callback, classTimer, round}: ITimerProps) => {
   
     useEffect(() => {
         if( timer > 0 ) { 
-            const interval: number = setInterval(() => {
+            const interval: any = setInterval(() => {
             setTimer(seconds => seconds - 1);
             }, 1000);
             return () => clearInterval(interval);
