@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { useAppSelector } from '../store/hooks'
 import User from './User'

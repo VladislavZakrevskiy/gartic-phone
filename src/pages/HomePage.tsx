@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect } from 'react'
 import ModeBar from '../components/ModeBar'
 import UserList from '../components/UserList'

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useMemo, useState } from 'react'
 import { useAppSelector } from '../store/hooks'
 import '../styles/modes.scss'

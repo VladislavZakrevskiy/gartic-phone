@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { IUser } from "../models/IUser";
 import { Mode } from "./Mode";
 

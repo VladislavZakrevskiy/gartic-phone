@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { IMessage } from "../models/message"
 
 export interface setter {

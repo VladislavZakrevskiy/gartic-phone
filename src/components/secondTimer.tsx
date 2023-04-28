@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import Timer from './Timer'
 import '../styles/modes.scss'

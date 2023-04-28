@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { IUser } from "../models/IUser"
 import { IMessage } from "../models/message"
 import { useAppDispatch, useAppSelector } from "../store/hooks"

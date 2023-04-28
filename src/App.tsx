@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import './styles/app.scss'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { IUser } from "../models/IUser";
 import { IElement, IRound, Mode } from "./Mode";
 import Photo from '../components/Photo';

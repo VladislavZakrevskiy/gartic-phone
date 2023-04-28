@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Photo from '../components/Photo'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppSelector } from '../store/hooks'

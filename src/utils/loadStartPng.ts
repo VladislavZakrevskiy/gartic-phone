@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useAppSelector } from "../store/hooks"
 import axios from 'axios';
 

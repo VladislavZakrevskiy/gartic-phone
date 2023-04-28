@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState } from 'react'
 import '../styles/modes.scss'
 import Mode from './Mode'

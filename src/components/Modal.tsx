@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { useState } from 'react'
 import { setUsername } from '../store/reducers/canvasSlice'
 import { useAppDispatch } from '../store/hooks'

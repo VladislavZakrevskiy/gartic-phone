@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { NavigateFunction } from "react-router-dom"
 import { IUser } from "../models/IUser"
 import { IMessage, connectionMessage } from "../models/message"

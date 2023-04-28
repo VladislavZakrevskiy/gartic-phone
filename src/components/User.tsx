@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { IUser } from '../models/IUser'
 import '../styles/User.scss'

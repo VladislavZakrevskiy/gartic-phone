@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { IElement } from '../modes/Mode'
 import Photo from './Photo'

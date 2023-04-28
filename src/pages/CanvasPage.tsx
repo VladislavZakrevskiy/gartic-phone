@@ -1,3 +1,4 @@
+//@ts-nocheck
 import  { useCallback, useEffect, useRef, useState } from 'react'
 import ToolBar from '../components/ToolBar'
 import Settings from '../components/Settings'

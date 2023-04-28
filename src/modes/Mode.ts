@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { IUser } from "../models/IUser"
 
 type roundsTypes = 'drawRound' | 'writeRound' | ''

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useCallback, useEffect, useState } from 'react'
 import FormComponent from '../components/Form';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';

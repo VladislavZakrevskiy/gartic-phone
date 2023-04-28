@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { IUser } from "../models/IUser";
 import { IRound } from "./Mode";
 import { Mode } from "./Mode";

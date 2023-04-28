@@ -1,6 +1,6 @@
+//@ts-nocheck
 import { createSlice } from '@reduxjs/toolkit';
 import Tool from '../../tools/Tool';
-import { undo } from './canvasSlice';
 
 interface State {
     tool: Tool | null

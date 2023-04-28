@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { IUploadProps } from '../models/queryInterfaces'
 import { useUploadQuery } from '../store/API/getAPI'

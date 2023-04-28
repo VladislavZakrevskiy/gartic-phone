@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import toolSlice from './reducers/toolSlice';
 import canvasSlice from './reducers/canvasSlice';

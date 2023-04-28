@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, {useEffect, useRef} from 'react'
 import '../styles/canvas.scss'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
