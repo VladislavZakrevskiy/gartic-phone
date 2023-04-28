@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState } from 'react'
 import '../styles/modes.scss'
 
@@ -13,8 +14,7 @@ const AppeareElement = ({time, children, className}: AppearElProps) => {
   
     useEffect(() => {
         if( timer > 0 ) { 
-            let interval: number
-            interval = setInterval(() => {
+            const interval: any = setInterval(() => {
             setTimer(seconds => seconds - 1);
             }, 1000);
             return () => clearInterval(interval);

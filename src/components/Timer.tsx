@@ -6,7 +6,7 @@ interface ITimerProps {
     allTime: number
     callback: () => void
     classTimer?: string
-    round: number
+    round?: number
 }
 
 const Timer = ({ allTime, callback, classTimer, round}: ITimerProps) => {
