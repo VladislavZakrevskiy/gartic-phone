@@ -18,8 +18,7 @@ const Timer = ({ allTime, callback, classTimer, round}: ITimerProps) => {
   
     useEffect(() => {
         if( timer > 0 ) { 
-            let interval: number
-            interval = setInterval(() => {
+            const interval: number = setInterval(() => {
             setTimer(seconds => seconds - 1);
             }, 1000);
             return () => clearInterval(interval);
