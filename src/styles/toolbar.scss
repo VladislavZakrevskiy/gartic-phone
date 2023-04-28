@@ -1,0 +1,37 @@
+@import './consts.scss';
+
+
+.toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    flex-direction: column;
+    padding: 40px;
+    gap: 5px;
+
+    &_btn {
+        cursor: pointer;
+        outline: none;
+        width: 100%;
+    }
+}
+
+
+.settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    flex-direction: column;
+    padding: 40px;
+    gap: 5px;
+
+    &_btn {
+        cursor: pointer;
+        outline: none;
+        width: 100%;
+    }
+}
+
