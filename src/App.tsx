@@ -6,12 +6,14 @@ import CanvasPage from './pages/CanvasPage'
 import FormPage from './pages/FormPage'
 import HomePage from './pages/HomePage'
 import FinishPage from './pages/FinishPage'
+import Header from './components/Header'
 
 type Props = {}
 
 const App = (props: Props) => {
   return (
     <BrowserRouter>
+      <Header/>
       <Routes>
         {/* query: round */}
         <Route path='/drawRound/:round' element={<CanvasPage/>}/>
