@@ -6,7 +6,7 @@ type Props = {}
 const Header = (props: Props) => {
   return (
     <Navbar bg='primary' variant='dark' className='header'>
-      <Navbar.Brand className='header_brand'>
+      <Navbar.Brand className='header_brand' style={{paddingRight: '10px'}}>
         Paint Online [Fun]
       </Navbar.Brand>
     </Navbar>
