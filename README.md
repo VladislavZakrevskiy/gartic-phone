@@ -8,7 +8,7 @@
 
 <h1>Features:</h1>
 
-<ol>
+<ul>
 <li><h3>Real-time painting</h3></li>
 <li><h3>5 original modes</h3></li>
 <li><h3>Customized process of writing and painting rounds</h3></li>
@@ -16,19 +16,19 @@
 <li><h3>Rooms of players</h3></li>
 <li><h3>Registration in rooms</h3></li>
 <li><h3>All ws handlers have been processed</h3></li>
-</ol>
+</ul>
 
 <h1>Tech Stack:</h1>
 
-<ol>
+<ul>
 <li><h3>bootstrap</h3></li>
 <li><h3>react</h3></li>
 <li><h3>sass</h3></li>
 <li><h3>websocket</h3></li>
 <li><h3>axios</h3></li>
 <li><h3>express-ws/express</h3></li>
-<li><h3cors></h3></li>
-</ol>
+<li><h3>cors</h3></li>
+</ul>
 
 <h2>It's dir with front and back source code</h2>
 
