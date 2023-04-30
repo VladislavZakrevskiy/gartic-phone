@@ -5,7 +5,7 @@ import { IUploadProps, ISendMessageProps } from '../../models/queryInterfaces';
 
 export const getApi = createApi({
     reducerPath: 'photoApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000/'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'https://fun-zuos.onrender.com'}),
     endpoints: (build) => ({
         getSentences: build.query({
             query: ({round, id}: ISendMessageProps) => ({

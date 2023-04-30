@@ -17,7 +17,7 @@ import {Secret} from '../modes/Secret'
 
 export const openWS = (dispatch: any, username: string, id: string, users: IUser[], nav: NavigateFunction) => {
     if(username) {
-        const socket = new WebSocket('ws://localhost:5000')
+        const socket = new WebSocket('wss://fun-zuos.onrender.com/')
         dispatch(setSocket(socket))
         const msg: connectionMessage = {
             id: id,
